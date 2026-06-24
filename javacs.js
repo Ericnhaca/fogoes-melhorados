@@ -46,8 +46,9 @@ document.addEventListener('DOMContentLoaded', function () {
         counters.forEach(function (counter) {
             var target = parseInt(counter.getAttribute('data-target'));
             var duration = 2000;
-            var start = 0;
             var startTime = null;
+
+            counter.textContent = '0';
 
             function easeOut(t) {
                 return 1 - Math.pow(1 - t, 3);
@@ -71,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Intersection Observer for animations
     var observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.1,
+        rootMargin: '0px 0px 0px 0px'
     };
 
     // Animate stats when visible
@@ -148,25 +149,51 @@ document.addEventListener('DOMContentLoaded', function () {
     var contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        var nome = document.getElementById('nome').value;
-        var email = document.getElementById('email').value;
-        var telefone = document.getElementById('telefone').value;
-        var mensagem = document.getElementById('mensagem').value;
 
         var btn = contactForm.querySelector('button[type="submit"]');
         var originalText = btn.textContent;
-        btn.textContent = 'Enviado!';
-        btn.style.background = 'var(--green)';
-        btn.style.borderColor = 'var(--green)';
-        btn.style.color = '#fff';
+        btn.textContent = 'A enviar...';
+        btn.disabled = true;
 
-        setTimeout(function () {
-            btn.textContent = originalText;
-            btn.style.background = '';
-            btn.style.borderColor = '';
-            btn.style.color = '';
-            contactForm.reset();
-        }, 3000);
+        var formData = new FormData(contactForm);
+
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        }).then(function (response) {
+            if (response.ok) {
+                btn.textContent = 'Enviado com sucesso!';
+                btn.style.background = 'var(--green)';
+                btn.style.borderColor = 'var(--green)';
+                btn.style.color = '#fff';
+                contactForm.reset();
+            } else {
+                btn.textContent = 'Erro ao enviar';
+                btn.style.background = '#e53e3e';
+                btn.style.borderColor = '#e53e3e';
+                btn.style.color = '#fff';
+            }
+            setTimeout(function () {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.style.borderColor = '';
+                btn.style.color = '';
+                btn.disabled = false;
+            }, 3000);
+        }).catch(function () {
+            btn.textContent = 'Erro ao enviar';
+            btn.style.background = '#e53e3e';
+            btn.style.borderColor = '#e53e3e';
+            btn.style.color = '#fff';
+            setTimeout(function () {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.style.borderColor = '';
+                btn.style.color = '';
+                btn.disabled = false;
+            }, 3000);
+        });
     });
 
     // Smooth scroll for anchor links
