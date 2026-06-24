@@ -145,55 +145,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Contact form
+    // Contact form - sends via mailto
     var contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
+        var nome = document.getElementById('nome').value;
+        var email = document.getElementById('email').value;
+        var telefone = document.getElementById('telefone').value;
+        var mensagem = document.getElementById('mensagem').value;
+
+        var subject = encodeURIComponent('Contacto via Site - ' + nome);
+        var body = encodeURIComponent(
+            'Nome: ' + nome + '\n' +
+            'Email: ' + email + '\n' +
+            'Telefone: ' + telefone + '\n\n' +
+            'Mensagem:\n' + mensagem
+        );
+
+        window.location.href = 'mailto:improvedcookstovesproject@gmail.com?subject=' + subject + '&body=' + body;
+
         var btn = contactForm.querySelector('button[type="submit"]');
         var originalText = btn.textContent;
-        btn.textContent = 'A enviar...';
-        btn.disabled = true;
+        btn.textContent = 'A abrir email...';
+        btn.style.background = 'var(--green)';
+        btn.style.borderColor = 'var(--green)';
+        btn.style.color = '#fff';
 
-        var formData = new FormData(contactForm);
-
-        fetch(contactForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        }).then(function (response) {
-            if (response.ok) {
-                btn.textContent = 'Enviado com sucesso!';
-                btn.style.background = 'var(--green)';
-                btn.style.borderColor = 'var(--green)';
-                btn.style.color = '#fff';
-                contactForm.reset();
-            } else {
-                btn.textContent = 'Erro ao enviar';
-                btn.style.background = '#e53e3e';
-                btn.style.borderColor = '#e53e3e';
-                btn.style.color = '#fff';
-            }
-            setTimeout(function () {
-                btn.textContent = originalText;
-                btn.style.background = '';
-                btn.style.borderColor = '';
-                btn.style.color = '';
-                btn.disabled = false;
-            }, 3000);
-        }).catch(function () {
-            btn.textContent = 'Erro ao enviar';
-            btn.style.background = '#e53e3e';
-            btn.style.borderColor = '#e53e3e';
-            btn.style.color = '#fff';
-            setTimeout(function () {
-                btn.textContent = originalText;
-                btn.style.background = '';
-                btn.style.borderColor = '';
-                btn.style.color = '';
-                btn.disabled = false;
-            }, 3000);
-        });
+        setTimeout(function () {
+            btn.textContent = originalText;
+            btn.style.background = '';
+            btn.style.borderColor = '';
+            btn.style.color = '';
+            contactForm.reset();
+        }, 3000);
     });
 
     // Smooth scroll for anchor links
