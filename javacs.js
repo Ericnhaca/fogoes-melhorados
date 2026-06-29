@@ -9,12 +9,35 @@ document.addEventListener('DOMContentLoaded', function () {
         navToggle.classList.toggle('active');
     });
 
+    // Nav dropdown toggle
+    var navDropdown = document.getElementById('navDropdown');
+    var navDropdownToggle = document.getElementById('navDropdownToggle');
+
     navMenu.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
+            if (navDropdown) {
+                navDropdown.classList.remove('active');
+                navDropdownToggle.setAttribute('aria-expanded', 'false');
+            }
         });
     });
+
+    if (navDropdownToggle) {
+        navDropdownToggle.addEventListener('click', function () {
+            navDropdown.classList.toggle('active');
+            var expanded = navDropdown.classList.contains('active');
+            navDropdownToggle.setAttribute('aria-expanded', String(expanded));
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!navDropdown.contains(e.target)) {
+                navDropdown.classList.remove('active');
+                navDropdownToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
 
     // Header scroll effect
     var header = document.getElementById('header');
@@ -94,7 +117,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fade-in animation for sections
     var fadeElements = document.querySelectorAll(
         '.about-card, .benefit-card, .timeline-item, .instruction-card, ' +
-        '.scholarship-card, .sdg-item, .partner-card, .contact-item'
+        '.scholarship-card, .sdg-item, .partner-card, .contact-item, ' +
+        '.fm-gallery-item, .fm-card, .fm-pillar, .fm-milestone, .fm-result'
     );
 
     fadeElements.forEach(function (el) {
@@ -193,5 +217,80 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Lightbox for fm-gallery
+    (function () {
+        var overlay = document.createElement('div');
+        overlay.className = 'fm-lightbox';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-label', 'Galeria de fotos');
+        overlay.innerHTML =
+            '<button class="fm-lightbox-close" aria-label="Fechar">×</button>' +
+            '<button class="fm-lightbox-prev" aria-label="Foto anterior">←</button>' +
+            '<button class="fm-lightbox-next" aria-label="Próxima foto">→</button>' +
+            '<img class="fm-lightbox-img" alt="">' +
+            '<p class="fm-lightbox-cap"></p>';
+        document.body.appendChild(overlay);
+
+        var lbImg = overlay.querySelector('.fm-lightbox-img');
+        var lbCap = overlay.querySelector('.fm-lightbox-cap');
+        var items = [];
+        var idx = 0;
+        var lastFocus = null;
+
+        function show() {
+            var btn = items[idx];
+            var photo = btn.querySelector('img');
+            lbImg.src = photo.src;
+            lbImg.alt = photo.alt;
+            lbCap.textContent = btn.getAttribute('data-cap') || '';
+        }
+
+        function openLb(btn) {
+            var gallery = btn.closest('.fm-gallery');
+            items = Array.from(gallery.querySelectorAll('.fm-gallery-item'));
+            idx = items.indexOf(btn);
+            lastFocus = btn;
+            show();
+            overlay.classList.add('fm-lightbox-active');
+            overlay.querySelector('.fm-lightbox-close').focus();
+        }
+
+        function closeLb() {
+            overlay.classList.remove('fm-lightbox-active');
+            if (lastFocus) lastFocus.focus();
+        }
+
+        function prev() {
+            idx = (idx - 1 + items.length) % items.length;
+            show();
+        }
+
+        function next() {
+            idx = (idx + 1) % items.length;
+            show();
+        }
+
+        overlay.querySelector('.fm-lightbox-close').addEventListener('click', closeLb);
+        overlay.querySelector('.fm-lightbox-prev').addEventListener('click', prev);
+        overlay.querySelector('.fm-lightbox-next').addEventListener('click', next);
+
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) closeLb();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (!overlay.classList.contains('fm-lightbox-active')) return;
+            if (e.key === 'Escape') closeLb();
+            if (e.key === 'ArrowLeft') prev();
+            if (e.key === 'ArrowRight') next();
+        });
+
+        document.addEventListener('click', function (e) {
+            var btn = e.target.closest('.fm-gallery-item');
+            if (btn) openLb(btn);
+        });
+    })();
 
 });

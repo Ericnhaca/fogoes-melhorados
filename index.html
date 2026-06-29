@@ -35,10 +35,21 @@
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#beneficios">Benefícios</a></li>
-                    <li><a href="#distribuicao">Distribuição</a></li>
-                    <li><a href="#instrucoes">Instruções</a></li>
+                    <li class="nav-dropdown" id="navDropdown">
+                        <button class="nav-dropdown-toggle" id="navDropdownToggle" aria-expanded="false" aria-haspopup="true">
+                            Projecto
+                            <svg class="nav-dropdown-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="#distribuicao">Produção e Distribuição</a></li>
+                            <li><a href="#distribuicao-campo">Distribuição em Campo</a></li>
+                            <li><a href="#monitoria">Monitoria</a></li>
+                            <li><a href="#cooking-show">Cooking Show</a></li>
+                            <li><a href="#instrucoes">Instruções de Uso</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#bolsas">Bolsas</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
                 </ul>
             </nav>
         </div>
@@ -159,7 +170,7 @@
                     <div class="timeline-number">1</div>
                     <div class="timeline-content">
                         <h3>Produção</h3>
-                        <p>Os Fogões Melhorados serão feitos em Maputo, dentro dos espaços de produção do Instituto Superior Dom Bosco. Esta actividade permitirá formar e empregar 15 pessoas que participarão nas actividades de produção, mais 25 supervisores gestores.</p>
+                        <p>Os Fogões Melhorados são feitos em Maputo, dentro dos espaços de produção do Instituto Superior Dom Bosco. Esta actividade permitirá formar e empregar 15 pessoas que participarão nas actividades de produção, mais 25 supervisores gestores.</p>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -190,6 +201,175 @@
                         <p>Cada família será visitada pelo menos duas vezes por ano para verificar o correcto funcionamento do Fogão e reportar quaisquer problemas. Questionários serão aplicados para avaliar o impacto social do projecto.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="fm-dist-campo" id="distribuicao-campo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Distribuição em campo</span>
+                <h2>Como é feita a entrega às famílias</h2>
+                <p class="section-desc">A entrega dos fogões melhorados é feita porta-a-porta, sem qualquer custo para o beneficiário. Durante a entrega, os distribuidores registam os dados da família e do fogão entregue.</p>
+            </div>
+            <div class="fm-gallery">
+                <button class="fm-gallery-item" type="button" data-cap="Entrega porta-a-porta do fogão melhorado">
+                    <img src="static/dist-01.jpg" alt="Distribuidor entregando fogão melhorado a uma família" loading="lazy">
+                </button>
+                <button class="fm-gallery-item" type="button" data-cap="Registo dos dados da família e do fogão">
+                    <img src="static/dist-02.jpg" alt="Registo dos dados do beneficiário durante a entrega" loading="lazy">
+                </button>
+                <button class="fm-gallery-item" type="button" data-cap="Família a receber o fogão na sua residência">
+                    <img src="static/dist-03.jpg" alt="Família recebendo o fogão melhorado em sua casa" loading="lazy">
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="fm-monitoria" id="monitoria">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Monitoria do fogão</span>
+                <h2>Acompanhamento e questionários</h2>
+                <p class="section-desc">Cada beneficiário responde a um questionário que avalia o uso e o impacto do fogão melhorado, garantindo a qualidade e a eficácia da distribuição.</p>
+            </div>
+            <div class="fm-cards">
+                <div class="fm-card">
+                    <div class="fm-card-num">1.ª</div>
+                    <h3>1.ª Monitoria</h3>
+                    <p>Aplicada após 3 meses da entrega. O primeiro questionário avalia a adaptação da família ao fogão melhorado e o seu uso correcto.</p>
+                </div>
+                <div class="fm-card">
+                    <div class="fm-card-num">2.ª</div>
+                    <h3>2.ª Monitoria</h3>
+                    <p>Segunda visita de seguimento que confirma o funcionamento do fogão e recolhe dados sobre o impacto na vida da família.</p>
+                </div>
+            </div>
+            <div class="fm-gallery">
+                <button class="fm-gallery-item" type="button" data-cap="Aplicação do questionário de monitoria">
+                    <img src="static/monit-01.jpg" alt="Monitora aplicando questionário a beneficiário" loading="lazy">
+                </button>
+                <button class="fm-gallery-item" type="button" data-cap="Verificação do fogão durante visita de seguimento">
+                    <img src="static/monit-02.jpg" alt="Verificação do funcionamento do fogão durante visita de monitoria" loading="lazy">
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="fm-cooking-show" id="cooking-show">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Cooking show</span>
+                <h2>Saúde, Nutrição e Arte Culinária</h2>
+                <p class="section-desc">Avaliação dos resultados de saúde e promoção de boas práticas culinárias nas comunidades beneficiárias do projecto de fogões melhorados.</p>
+            </div>
+
+            <div class="fm-component">
+                <div class="fm-component-header">
+                    <div class="fm-card-num">1</div>
+                    <div>
+                        <h3>Avaliação de Resultados de Saúde</h3>
+                        <p>Monitorar e avaliar os resultados de saúde e o impacto do projecto nas comunidades, através de um método misto — qualitativo e quantitativo — com dados de fontes primárias e secundárias, organizado em três pilares.</p>
+                    </div>
+                </div>
+
+                <div class="fm-pillars">
+                    <div class="fm-pillar">
+                        <div class="fm-pillar-icon">&#128200;</div>
+                        <h4>Pilar 1 — Conhecimento, Atitude e Prática</h4>
+                        <p>Mede as mudanças de conhecimento, percepções e comportamentos da comunidade sobre saúde, nutrição e uso do fogão, comparando o antes e o depois. Inquéritos aplicados no início, após 1 ano e após 5 anos, com amostra de 140–160 domicílios por cada 50.000.</p>
+                    </div>
+                    <div class="fm-pillar">
+                        <div class="fm-pillar-icon">&#128154;</div>
+                        <h4>Pilar 2 — Saúde e Bem-Estar</h4>
+                        <p>Avalia condições agudas e crónicas, autorrelatadas e clinicamente documentadas via unidades de saúde locais. Análise intermédia no 5.º ano e avaliação final no 10.º ano do projecto.</p>
+                    </div>
+                    <div class="fm-pillar">
+                        <div class="fm-pillar-icon">&#128168;</div>
+                        <h4>Pilar 3 — Qualidade do Ar Doméstico</h4>
+                        <p>Mede poluentes como PM2,5, PM10, CO, CO₂, O₃, NO₂, SO₂ e COVT dentro do domicílio, antes e depois da introdução do fogão. Segue normas técnicas europeias (UNI EN), com a mesma amostra de 140–160 domicílios.</p>
+                    </div>
+                </div>
+
+                <div class="fm-milestones">
+                    <div class="fm-milestone">
+                        <span class="fm-milestone-year">Ano 1</span>
+                        <p>Inquérito de saúde e bem-estar n.º 2 e medição da qualidade do ar n.º 2</p>
+                    </div>
+                    <div class="fm-milestone">
+                        <span class="fm-milestone-year">Ano 5</span>
+                        <p>Inquérito n.º 3, saúde clínica n.º 2 e relatório de revisão</p>
+                    </div>
+                    <div class="fm-milestone">
+                        <span class="fm-milestone-year">Ano 10</span>
+                        <p>Saúde clínica n.º 3 e relatório final de avaliação</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fm-component">
+                <div class="fm-component-header">
+                    <div class="fm-card-num">3</div>
+                    <div>
+                        <h3>Arte Culinária: Saúde e Energia</h3>
+                        <p>Estudo das tradições gastronómicas locais, cadeias de abastecimento alimentar, técnicas de preparação e estado nutricional, com envolvimento de chefs, nutricionistas e especialistas, incluindo o fotógrafo Gabriele Galimberti, autor do projecto «In Her Kitchen».</p>
+                    </div>
+                </div>
+
+                <div class="fm-cards">
+                    <div class="fm-card">
+                        <div class="fm-pillar-icon">&#127858;</div>
+                        <h3>Gastronomia</h3>
+                        <p>Comer bem é viver mais, com saúde e respeito pelo ambiente. Valoriza quem prepara os alimentos como figura central da transição energética, promovendo a redução do desperdício e a reutilização de resíduos.</p>
+                    </div>
+                    <div class="fm-card">
+                        <div class="fm-pillar-icon">&#129365;</div>
+                        <h3>Nutrição</h3>
+                        <p>Capacita a população local a usar melhor os produtos acessíveis e sustentáveis, considerando necessidades nutricionais dos mais vulneráveis, dieta saudável e combate à subnutrição, anemia e deficiências de micronutrientes.</p>
+                    </div>
+                </div>
+
+                <div class="fm-results">
+                    <h4>Resultados Esperados</h4>
+                    <div class="fm-results-grid">
+                        <div class="fm-result">
+                            <span class="fm-result-icon">&#127916;</span>
+                            <span>2 Cooking Shows</span>
+                        </div>
+                        <div class="fm-result">
+                            <span class="fm-result-icon">&#127909;</span>
+                            <span>Videorreportagem</span>
+                        </div>
+                        <div class="fm-result">
+                            <span class="fm-result-icon">&#128214;</span>
+                            <span>Publicação Editorial</span>
+                        </div>
+                        <div class="fm-result">
+                            <span class="fm-result-icon">&#128227;</span>
+                            <span>Boas Práticas</span>
+                        </div>
+                        <div class="fm-result">
+                            <span class="fm-result-icon">&#127859;</span>
+                            <span>Programa de Culinária</span>
+                        </div>
+                        <div class="fm-result">
+                            <span class="fm-result-icon">&#127912;</span>
+                            <span>Projectos Culturais</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fm-gallery">
+                <button class="fm-gallery-item" type="button" data-cap="Demonstração do uso correcto do fogão">
+                    <img src="static/cooking_show 01.JPG" alt="Demonstração prática do uso do fogão melhorado" loading="lazy">
+                </button>
+                <button class="fm-gallery-item" type="button" data-cap="Sessão prática de cooking show">
+                    <img src="static/cooking_show 04.JPG" alt="Participantes observando a sessão de cooking show" loading="lazy">
+                </button>
+                <button class="fm-gallery-item" type="button" data-cap="Preparação de refeição no fogão melhorado">
+                    <img src="static/cooking_show 05.JPG" alt="Preparação de alimentos durante o cooking show" loading="lazy">
+                </button>
             </div>
         </div>
     </section>
@@ -332,7 +512,7 @@
                         <div class="contact-icon">&#128222;</div>
                         <div>
                             <h4>Telefone</h4>
-                            <p>+258 84 97 84 027</p>
+                            <p>+258 86 88 34 929</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -383,11 +563,14 @@
                         <li><a href="#sobre">Sobre</a></li>
                         <li><a href="#beneficios">Benefícios</a></li>
                         <li><a href="#distribuicao">Distribuição</a></li>
+                        <li><a href="#distribuicao-campo">Distribuição em Campo</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Projecto</h4>
                     <ul>
+                        <li><a href="#monitoria">Monitoria</a></li>
+                        <li><a href="#cooking-show">Cooking Show</a></li>
                         <li><a href="#instrucoes">Instruções de Uso</a></li>
                         <li><a href="#bolsas">Bolsas de Estudo</a></li>
                         <li><a href="#contacto">Contacto</a></li>
