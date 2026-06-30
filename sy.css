@@ -125,6 +125,11 @@ body {
     border: none;
     cursor: pointer;
     padding: 8px;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
 }
 
 .nav-toggle span {
@@ -247,6 +252,7 @@ body {
 .hero {
     position: relative;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     background: #0d3318;
@@ -321,7 +327,7 @@ body {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: clamp(2rem, 1.4rem + 3vw, 3.5rem);
     font-weight: 800;
     color: var(--white);
     line-height: 1.1;
@@ -329,14 +335,14 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.2rem);
     color: rgba(255,255,255,0.8);
     font-weight: 400;
     margin-bottom: 20px;
 }
 
 .hero-desc {
-    font-size: 1rem;
+    font-size: clamp(0.92rem, 0.86rem + 0.3vw, 1rem);
     color: rgba(255,255,255,0.6);
     margin-bottom: 32px;
     max-width: 560px;
@@ -360,6 +366,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s;
+    touch-action: manipulation;
 }
 
 .btn-primary {
@@ -462,7 +469,7 @@ body {
 }
 
 .section-header h2 {
-    font-size: 2.2rem;
+    font-size: clamp(1.6rem, 1.35rem + 1.2vw, 2.2rem);
     font-weight: 700;
     color: var(--gray-900);
     margin-bottom: 12px;
@@ -1076,6 +1083,28 @@ body {
     transform: translateY(0);
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .hero-slide,
+    .fade-in,
+    .fm-gallery-item,
+    .fm-gallery-item img,
+    .scroll-top,
+    .btn-primary,
+    .nav-menu .nav-cta {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .fade-in {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .about-grid {
@@ -1129,6 +1158,11 @@ body {
         display: flex;
     }
 
+    .nav-menu a,
+    .nav-dropdown-toggle {
+        padding: 12px 14px;
+    }
+
     .nav-dropdown-toggle {
         width: 100%;
         justify-content: space-between;
@@ -1154,18 +1188,6 @@ body {
     .nav-menu .nav-cta {
         text-align: center;
         margin-top: 8px;
-    }
-
-    .hero h1 {
-        font-size: 2.4rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-
-    .section-header h2 {
-        font-size: 1.7rem;
     }
 
     .benefits-grid {
@@ -1218,10 +1240,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-
     .hero-buttons {
         flex-direction: column;
     }
@@ -1321,6 +1339,14 @@ body {
 
 .fm-gallery-item:hover::after {
     opacity: 1;
+}
+
+@media (hover: none) {
+    .fm-gallery-item::after {
+        opacity: 1;
+        padding: 18px 14px 10px;
+        font-size: 0.78rem;
+    }
 }
 
 /* FM: QR Code */
